@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sustainability — Notes in Motion</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-cream:#f5f0e6;
+  --card:#ffffff;
+  --ink:#2f2a26;
+  --muted:#6c6761;
+  --accent:#b79984;
+  --matte:#885e40;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg-cream);
+  line-height:1.7;
+}
+
+/* Hero */
+.hero{
+  min-height:35vh;
+  display:flex; align-items:center; justify-content:center;
+  padding:4rem 1.25rem 2rem;
+  text-align:center;
+}
+.hero h1{
+  font-family:"Playfair Display", serif;
+  font-size:clamp(28px,4vw,42px);
+  margin:0;
+  line-height:1.2;
+}
+.hero p{
+  margin-top:.8rem;
+  color:var(--matte);
+}
+
+/* Cards Grid */
+.wrap{max-width:1100px; margin:2rem auto; padding:0 1.25rem 4rem}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+  gap:18px;
+}
+.card{
+  position:relative;
+  aspect-ratio: 4/3; /* wider than tall */
+  max-height: 260px; /* cap their height */
+  border-radius:var(--radius);
+  background:rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border:1px solid rgba(255,255,255,0.3);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  transform:translateY(10px); 
+  opacity:0;
+  transition:transform .6s cubic-bezier(.2,.6,.2,1), opacity .6s;
+  cursor:pointer;
+}
+.card.reveal{transform:translateY(0); opacity:1}
+.card-img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; opacity:.60; transition:transform .8s ease, opacity .4s;
+  filter:saturate(.9) contrast(.95);
+}
+.card:hover .card-img{transform:scale(1.05); opacity:.75}
+.card::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(245,240,230,.05), rgba(0,0,0,.06));
+  mix-blend-mode:multiply; z-index:1;
+}
+.card-label{
+  position:absolute; bottom:14px; left:14px; right:14px;
+  z-index:2;
+  background:rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border-radius:1px; padding:10px 12px;
+  font-weight:600; font-size:.95rem; color:#704a30;
+}
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:2.5rem 1rem 3.5rem;
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div>
+    <h1>Sustainability Articles</h1>
+    <p>Exploring fashion, environment & ethical impact</p>
+  </div>
+</section>
+ 
+<!-- Articles Grid -->
+<section class="wrap">
+  <div class="grid">
+    <!-- Example cards -->
+    <a class="card revealable" href="sustainability.html" title="Fast Fashion: Consuming Us">
+      <img class="card-img" src="https://scontent.fblr1-6.fna.fbcdn.net/v/t39.30808-6/493274648_712977554615115_7409456578420026890_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YKzJq7FxiPwQ7kNvwHXItWq&_nc_oc=AdnjH24tytice8FTmcLDnB-WVR7EdlAqtzwdNAmQLgZPAK7d4JN7VYjKP12-HRUHEXapB6QjNBq1B9-F4ZeUK3_9&_nc_zt=23&_nc_ht=scontent.fblr1-6.fna&_nc_gid=nbgjlACVJ8zuYpv_GPbHmw&oh=00_AfY2RH5zpmfUd0N_YAWs0rqHBdWqgVULVibhifdiUuAIOQ&oe=68C49FA4" alt="Morelli AI fashion billboard">
+      <div class="card-label">Fast Fashion: Consuming Us</div>
+    </a>
+
+    <!-- Add more article cards here -->
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Coffee, one sip at a time.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal on Scroll
+  const revealables = document.querySelectorAll('.revealable');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('reveal');
+        io.unobserve(e.target);
+      }
+    })
+  }, {threshold:.12});
+  revealables.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

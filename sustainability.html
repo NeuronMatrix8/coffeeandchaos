@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Fast Fashion — Notes in Motion</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-cream:#f5f0e6;
+  --card:#ffffff;
+  --ink:#2f2a26;
+  --muted:#6c6761;
+  --accent:#b79984;
+  --matte:#885e40;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg-cream);
+  line-height:1.7;
+  position:relative;
+}
+
+/* ===== Background slideshow ===== */
+.bg{
+  position:fixed; inset:0; z-index:-2;
+  filter:grayscale(.1) contrast(.95) brightness(.85);
+}
+.bg img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; opacity:0; transition:opacity 1s ease-in-out;
+}
+.bg img.active{opacity:0.45}
+.bg::after{
+  content:""; position:absolute; inset:0;
+  background:rgba(245,240,230,.55); z-index:1;
+}
+
+/* Header */
+header{
+  padding:1rem 1.25rem;
+  text-align:center; position:relative; z-index:2;
+}
+header a{
+  text-decoration:none;
+  color:var(--matte);
+  font-size:.95rem;
+  font-weight:500;
+}
+header a:hover{opacity:.75}
+
+/* Main article */
+main{
+  max-width:820px;
+  margin:2rem auto 4rem;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:2.2rem 2.4rem;
+  position:relative;
+  z-index:2;
+}
+h1{
+  font-family:"Playfair Display", serif;
+  font-size:clamp(28px,4vw,42px);
+  line-height:1.2;
+  margin:0 0 1rem;
+}
+p{
+  margin:1.2rem 0;
+  font-size:1.05rem;
+}
+blockquote{
+  margin:1.5rem 0;
+  padding:1rem 1.25rem;
+  border-left:4px solid var(--accent);
+  background:rgba(183,153,132,.08);
+  font-style:italic;
+  color:var(--matte);
+}
+
+/* Embedded Morelli image with credit */
+.article-img-wrapper{
+  margin:1.8rem 0;
+  text-align:center;
+}
+.article-img-wrapper img{
+  width:100%;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.article-img-wrapper figcaption{
+  font-size:.85rem;
+  color:var(--muted);
+  margin-top:.4rem;
+  font-style:italic;
+}
+.article-meta{
+  font-size:.95rem;
+  color:var(--muted);
+  margin-bottom:1.5rem;
+  font-style:italic;
+}
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:2rem 1rem 3rem;
+  font-size:.9rem;
+  color:var(--muted);
+  position:relative; z-index:2;
+}
+</style>
+</head>
+<body>
+
+<!-- Background slideshow -->
+<div class="bg" aria-hidden="true">
+  <img src="https://www.reuters.com/resizer/v2/LVXW6CEV4NN6RILAPXOGSQP3AA.jpg?auth=ed0c717ef5166ade3b7f85dd726f2467c5c3129735e3f10601dea7feba893f59&width=3000&quality=80" class="active" alt="SHEIN fashion pile">
+  <img src="https://scontent.fblr1-6.fna.fbcdn.net/v/t39.30808-6/493274648_712977554615115_7409456578420026890_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YKzJq7FxiPwQ7kNvwHXItWq&_nc_oc=AdnjH24tytice8FTmcLDnB-WVR7EdlAqtzwdNAmQLgZPAK7d4JN7VYjKP12-HRUHEXapB6QjNBq1B9-F4ZeUK3_9&_nc_zt=23&_nc_ht=scontent.fblr1-6.fna&_nc_gid=nbgjlACVJ8zuYpv_GPbHmw&oh=00_AfY2RH5zpmfUd0N_YAWs0rqHBdWqgVULVibhifdiUuAIOQ&oe=68C49FA4" alt="Morelli AI fashion billboard">
+  <img src="https://images.theconversation.com/files/522274/original/file-20230421-20-zluw54.jpg?ixlib=rb-4.1.0&rect=14%2C4%2C3170%2C2086&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip" alt="Rana Plaza collapse">
+</div>
+
+<header>
+  <a href="index.html">← Back to Home</a>
+</header>
+
+<main>
+  <h1>Fast Fashion: Slow Burn</h1>
+  <div class="article-meta">By Anusha Chaturvedi · September 9, 2025</div>
+
+  <p>A girl on a billboard is turning millions of heads. Donning a white-collared, opulent frill gown, she resembles yet another captivating model at first glance. On a closer look though, draped in landfills, she screams a brutal truth buried deep in glamour. Designed by Italian AI designer Emanuele Morelli, the image has sent shockwaves across Instagram, gaining lakhs of likes as I write this.</p>
+
+  <!-- Morelli image with credit -->
+  <figure class="article-img-wrapper">
+    <img src="https://www.collater.al/wp-content/uploads/2025/05/Jane-Morelli-Collater.al_-854x1024.jpeg" alt="Morelli AI fashion billboard">
+    <figcaption>Image by Jane Morelli</figcaption>
+  </figure>
+
+  <p>12 years ago, a commercial building collapse that killed 1,134 laborers in Bangladesh was thought to wake up the world to the cost of the mass production of clothes. Rather, we hit snooze and continued to sleep. Apparently, 1,134 is not that big of a number when we live in a world chasing millions of followers and likes. Rana Plaza was a testament to the world where we pushed the laborers inside that death hole — despite those cracks whispering the truth the previous day.</p>
+
+  <p>A report predicted 18.6 million tonnes of textile landfills by the year 2020. Reality? The world witnessed 90.2 million tonnes. While brands like H&M and Zara initiated feel-good campaigns like “Dump your old clothes here, and we’ll recycle them into new ones,” Behind The Scenes? Only 1% of all clothing is recycled fibre-to-fibre globally. Promoting sustainability is more like promoting a new term : “Greenwashing.”</p>
+
+  <p>Five letters stand out in Morelli’s image : "SHEIN", but why call out one when there is an ocean of fast-fashion giants? SHEIN, valued at $66 billion rose from landfills, stitched with synthetic thread and unpaid labor, as Morelli wrote in his post. It’s not just any random player, rather the pace-setter, the leader in producing clothes - swimming in the ocean of polyester, and ruling the hyper - consumption model, the face of the broken system, we’re all wearing.</p>
+
+  <blockquote>“But the harm doesn’t stop at the factories or the influencers’ wardrobes. This fallout from clothes that are never worn piles up far away, choking cities and ecosystems.”</blockquote>
+
+  <p>The second-hand clothes are being transported to Nairobi, where unsold clothing is eventually burned, releasing toxins. The fashion industry has doubled its production in the last 15 years, and if we continue at this pace, we’re heading towards irreversible damage by 2050. The world takes a loss of 400 billion USD annually, according to World Economic Forum (2020).</p>
+
+  <p>Half a million tonnes of microfibres ends up in ocean. To put in perspective, that’s equivalent to 50 billion plastic bottles. Not only oceans, micro-plastic was identified in commercial table salt in 16 countries on six continents. It didn’t despair beer, honey, sugar etc. We’ve been consuming fashion, and now, it’s consuming us.</p>
+
+  <p>And let’s not forget the people behind the seams. In the Leicester scandal (2020), garment workers were found to be paid as little as £3.50/hour, working in inhumane conditions right within the UK. This is not just an environmental crisis — it’s a human one.</p>
+
+  <p>The image might be AI generated, but the blood baths, landfills, toxic dyes, bleached coral reefs are real. It’s time we switch back to the world where fashion is thoughtful and not impulsive. One certainly needs to pause and ask themselves twice : “Do I really need it, or am I being sold to the illusion that I do?”</p>
+
+  <p>If we don’t address this now, the Earth will be buried under platforms like Shein, Temu, Zaful until there's no livable Earth left to wear it on.</p>
+</main>
+
+<footer>
+  © <span id="year"></span> Coffee, one sip at a time.
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Background slideshow
+(function(){
+  const slides = document.querySelectorAll('.bg img');
+  let i = 0;
+  setInterval(()=>{
+    slides[i].classList.remove('active');
+    i = (i+1) % slides.length;
+    slides[i].classList.add('active');
+  },7000);
+})();
+</script>
+
+</body>
+</html>

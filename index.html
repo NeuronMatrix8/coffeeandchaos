@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anusha — Notes in Motion</title>
+
+<!-- Typography -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-cream:#f5f0e6;
+    --card:#ffffff;
+    --ink:#2f2a26;
+    --muted:#6c6761;
+    --accent:#b79984;
+    --matte:#885e40;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--ink);
+    background:var(--bg-cream);
+    overflow-x:hidden;
+  }
+
+  .bg{position:fixed; inset:0; z-index:-2; filter:grayscale(.1) contrast(.95) brightness(.9);}
+  .bg img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 200ms ease-in-out;}
+  .bg img.active{opacity:.45}
+  .bg::after{content:""; position:absolute; inset:0; background:rgba(245,240,230,.55); z-index:1;}
+
+  .hero{min-height:85vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.25rem 2rem;}
+  .hero-inner{max-width:980px; width:100%; text-align:center; animation:fadeIn 200ms ease both; background:rgba(255,255,255,0.15); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border-radius:var(--radius); padding:2rem; border:1px solid rgba(255,255,255,0.25);}
+  .title{font-family:"Playfair Display", serif; font-size:clamp(28px,4vw,46px); line-height:1.15; margin:0 0 .65rem;}
+  .subtitle{font-size:clamp(13px,1.6vw,16px); color:var(--matte); margin:0 auto 1.4rem; max-width:760px;}
+  .divider{width:80px; height:2px; background:var(--accent); margin:.75rem auto 0; border-radius:2px; opacity:.8;}
+  .scroll-cue{margin-top:2.1rem; font-size:.9rem; color:var(--muted); opacity:.85; display:inline-flex; gap:.5rem; align-items:center; animation:float 2.5s ease-in-out infinite;}
+
+  .wrap{max-width:1100px; margin:0 auto; padding:1rem 1.25rem 4rem}
+  .grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));}
+  .card{position:relative; aspect-ratio:1/1; border-radius:var(--radius); background:rgba(255,255,255,0.15); backdrop-filter: blur(14px) saturate(180%); -webkit-backdrop-filter: blur(14px) saturate(180%); border:1px solid rgba(255,255,255,0.3); box-shadow:var(--shadow); overflow:hidden; transform:translateY(10px); opacity:0; transition:transform .6s cubic-bezier(.2,.6,.2,1), opacity .6s; cursor:pointer; isolation:isolate;}
+  .card.reveal{transform:translateY(0); opacity:1}
+  .card-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.60; transition:transform .8s ease, opacity .4s; filter:saturate(.9) contrast(.95);}
+  .card:hover .card-img{transform:scale(1.05); opacity:.75}
+  .card::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(245,240,230,.05), rgba(0,0,0,.06)); mix-blend-mode:multiply; z-index:1;}
+  .card-label{position:absolute; inset:auto 14px 14px 14px; z-index:2; background:rgba(255,255,255,0.25); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); border:1px solid rgba(255,255,255,0.3); border-radius:1px; padding:10px 12px; font-weight:600; font-size:.95rem; color:#704a30;}
+
+  footer{text-align:center; padding:2.5rem 1rem 3.5rem; color:var(--muted); font-size:.9rem;}
+
+  @keyframes fadeIn{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+  @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)}}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <img src="https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?q=80&w=1600" class="active" alt="">
+  <img src="https://images.unsplash.com/photo-1709547228697-fa1f424a3f39?q=80&w=1600" alt="">
+  <img src="https://images.unsplash.com/photo-1634838080334-28befa9efe80?q=80&w=1600" alt="">
+  <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=160" alt="">
+  <img src="https://images.unsplash.com/photo-1588260692987-01360da8185b?q=80&w=1600" alt="">
+  <img src="https://images.unsplash.com/photo-1588260692987-01360da8185b?q=80&w=1600" alt="">
+  <img src="https://images.unsplash.com/photo-1614949194403-9602bdc14a3a?q=80&w=1600" alt="">
+  <img src="https://images.unsplash.com/photo-1596097198305-e4844a56ddb8?q=80&w=1600" alt="">
+</div>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <h1 class="title">“Turning the most complex ideas into your next coffee-break conversation."</h1>
+    <p class="subtitle">
+      AI & Healthcare · Kaggle · Machine Learning · Deep Learning · Computational Biology · Formula 1 · Poetry.
+    </p>
+    <div class="divider"></div>
+    <a href="#sections" class="scroll-cue" aria-label="Scroll to categories">Explore ↓</a>
+  </div>
+</section>
+
+<section id="sections" class="wrap">
+  <div class="grid">
+    <a class="card revealable" href="napping.html" title="AI + Healthcare">
+      <img class="card-img" src="https://images.unsplash.com/photo-1630160163846-6c44b3a5c51e?q=80&w=1200" alt="Abstract medical cells" />
+      <div class="card-label">AI + Healthcare</div>
+    </a>
+
+    <a class="card revealable" href="napping.html" title="Kaggle">
+      <img class="card-img" src="https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?q=80&w=1600" alt="Colorful generative shapes (data vibes)" />
+      <div class="card-label">Kaggle</div>
+    </a>
+
+    <a class="card revealable" href="napping.html" title="Machine Learning">
+      <img class="card-img" src="https://images.unsplash.com/photo-1709547228697-fa1f424a3f39?q=80&w=1200" alt="Geometric patterns" />
+      <div class="card-label">Machine Learning</div>
+    </a>
+
+    <a class="card revealable" href="napping.html" title="Deep Learning">
+      <img class="card-img" src="https://images.unsplash.com/photo-1634838080334-28befa9efe80?q=80&w=1200" alt="Neural-like fibers" />
+      <div class="card-label">Deep Learning</div>
+    </a>
+
+    <a class="card revealable" href="napping.html" title="Computational Biology">
+      <img class="card-img" src="https://images.unsplash.com/photo-1648792940059-3b782a7b8b20?q=80&w=1200" alt="Microscopic textures" />
+      <div class="card-label">Computational Biology</div>
+    </a>
+
+    <a class="card revealable" href="napping.html" title="Formula 1">
+      <img class="card-img" src="https://images.unsplash.com/photo-1614949194403-9602bdc14a3a?q=80&w=1200" alt="Motion blur / speed" />
+      <div class="card-label">Formula 1</div>
+    </a>
+
+    <a class="card revealable" href="napping.html" title="Poetry">
+      <img class="card-img" src="https://images.unsplash.com/photo-1588260692987-01360da8185b?q=80&w=1200" alt="Paper, ink, texture" />
+      <div class="card-label">Poetry</div>
+    </a>
+    
+    <a class="card revealable" href="sustainabilitysection.html" title="Sustainable Fashion">
+      <img class="card-img" src="https://images.unsplash.com/photo-1596097198305-e4844a56ddb8?q=80&w=1200" alt="Fashion made from recycled fabrics" />
+      <div class="card-label">Sustainable Fashion</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Coffee, one sip at a time.
+</footer>
+
+<script>
+  (function(){
+    const slides = document.querySelectorAll('.bg img');
+    let i = 0;
+    setInterval(()=>{
+      slides[i].classList.remove('active');
+      i = (i+1) % slides.length;
+      slides[i].classList.add('active');
+    }, 7000);
+  })();
+
+  const revealables = document.querySelectorAll('.revealable');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('reveal');
+        io.unobserve(e.target);
+      }
+    })
+  }, {threshold:.12});
+  revealables.forEach(el=>io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    let scrolling = false;
+    window.addEventListener('wheel', (e)=>{
+      if (scrolling) return;
+      const target = Math.max(0, Math.min(
+        document.body.scrollHeight - window.innerHeight,
+        window.scrollY + e.deltaY * 0.8
+      ));
+      scrolling = true;
+      window.scrollTo({top:target, behavior:'smooth'});
+      setTimeout(()=>scrolling=false, 350);
+      e.preventDefault();
+    }, {passive:false});
+  })();
+</script>
+
+</body>
+</html>
